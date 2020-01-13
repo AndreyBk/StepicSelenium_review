@@ -4,13 +4,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import sys
-from pages.locators import ProductPageLocators
-from pages.product_page import ProductPage
-from pages.main_page import MainPage
-from pages.basket_page import BasketPage
+from .pages.locators import ProductPageLocators
+from .pages.product_page import ProductPage
+from .pages.main_page import MainPage
+from .pages.basket_page import BasketPage
 
 
-# @pytest.mark.skip
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
 

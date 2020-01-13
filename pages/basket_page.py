@@ -9,14 +9,11 @@ from .locators import BasketPageLocator
 from .base_page import BasePage
 
 
-# import BasePage
 
 
 class BasketPage(BasePage):
 
     def should_be_field_content(self):
-        # self.browser.find_element(By.CSS_SELECTOR, "#login_link_invalid")
-        # assert self.is_element_present(By.CSS_SELECTOR, "#login_link_invalid"), "Login link is not presented"
         assert self.is_element_present(*BasketPageLocator.FIELD_CONT_BASKET), "Field content is not presented"
 
     def text_basket_is_empty(self):

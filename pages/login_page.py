@@ -1,7 +1,6 @@
 from .base_page import BasePage
 from .locators import LoginPageLocator
 from .locators import UserPageLocator
-import time
 
 
 class LoginPage(BasePage):
@@ -32,15 +31,11 @@ class LoginPage(BasePage):
 
     def register_new_user(self, email, password):
         field_email = self.browser.find_element(*LoginPageLocator.FIELD_REGISTER_EMAIL)
-        # email = str(time.time()) + "@fakemail.org"
         field_email.send_keys(email)
-        # time.sleep(1)
         field_pass1 = self.browser.find_element(*LoginPageLocator.FIELD_REGISTER_PASS_1)
         field_pass1.send_keys(password)
-        # time.sleep(1)
         field_pass2 = self.browser.find_element(*LoginPageLocator.FIELD_REGISTER_PASS_2)
         field_pass2.send_keys(password)
-        # time.sleep(1)
         button_reg = self.browser.find_element(*LoginPageLocator.BUTTON_REGISTER)
         button_reg.click()
         thanks_message = self.browser.find_element(*UserPageLocator.THANKS_MESSAGE)

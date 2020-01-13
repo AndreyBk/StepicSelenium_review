@@ -4,10 +4,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import sys
-from pages.locators import ProductPageLocators
-from pages.product_page import ProductPage
-from pages.basket_page import BasketPage
-from pages.login_page import LoginPage
+from .pages.locators import ProductPageLocators
+from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 
 
 # pytest -v --tb=line --language=en test_product_page.py
@@ -28,9 +28,6 @@ class TestGuestAddToBasketFromProductPage:
     # @pytest.mark.skip
     @pytest.mark.need_review
     def test_guest_can_add_product_to_basket(self, browser, link):#+
-        # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-        # link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/?promo=newYear2019"
-
         page = ProductPage(browser, link)
         page.open()
         page.should_be_add_button()
@@ -52,7 +49,6 @@ class TestGuestAddToBasketFromProductPage:
         page.solve_quiz_and_get_code()
         page.should_not_be_success_message()
 
-    # @pytest.mark.skip
     def test_guest_cant_see_success_message(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
         page = ProductPage(browser, link)
@@ -70,14 +66,12 @@ class TestGuestAddToBasketFromProductPage:
         time.sleep(2)
         page.should_not_disappeared_be_success_message()
 
-    # @pytest.mark.skip
     def test_guest_should_see_login_link_on_product_page(self, browser):
         link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
         page = ProductPage(browser, link)
         page.open()
         page.should_be_login_link()
 
-    # @pytest.mark.skip
     @pytest.mark.need_review
     def test_guest_can_go_to_login_page_from_product_page(self, browser):#+
         link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
@@ -87,7 +81,6 @@ class TestGuestAddToBasketFromProductPage:
         page.go_to_login_page()
         time.sleep(2)
 
-    # @pytest.mark.skip
     @pytest.mark.need_review
     def test_guest_cant_see_product_in_basket_opened_from_product_page(self, browser):#+
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
@@ -103,7 +96,6 @@ class TestGuestAddToBasketFromProductPage:
         basket_page.text_basket_is_empty()
 
 
-# @pytest.mark.skip
 class TestUserAddToBasketFromProductPage:
 
     @pytest.fixture(scope="function", autouse=True)
@@ -126,12 +118,8 @@ class TestUserAddToBasketFromProductPage:
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self):#+
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-        # link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/?promo=newYear2019"
-        # page = ProductPage(browser, link)
-        # page.open()
         page = ProductPage(self.page.browser, link)
         page.open()
-        # time.sleep(2)
         page.should_be_authorized_user()
         page.should_be_add_button()
         name_item = page.get_name_item()
@@ -140,4 +128,3 @@ class TestUserAddToBasketFromProductPage:
         page.solve_quiz_and_get_code()
         page.verify_name_item(name_item)
         page.verify_price_basket(price_item)
-        # time.sleep(2)

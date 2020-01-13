@@ -1,13 +1,10 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
 from .locators import BasketPageLocator
-
-
 from .login_page import LoginPage
 import time
 
 
-# from selenium.webdriver.common.by import By
 
 class ProductPage(BasePage):
     def get_name_item(self):
@@ -26,8 +23,6 @@ class ProductPage(BasePage):
         add_button.click()
 
     def should_be_add_button(self):
-        # self.browser.find_element(By.CSS_SELECTOR, "#login_link_invalid")
-        # assert self.is_element_present(By.CSS_SELECTOR, "#login_link_invalid"), "Login link is not presented"
         assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_BUTTON), "Add button is not presented"
 
     def verify_name_item(self, _name):
@@ -36,11 +31,8 @@ class ProductPage(BasePage):
         assert _name in field_name_item.text, "Wrong name item"
 
     def verify_price_basket(self, _price):
-        # time.sleep(5)
         field_price_item = self.browser.find_element(*BasketPageLocator.FIELD_BASKET_SUM_PRICE)
         _price="Your basket total is now "+_price
-        # print(_price)
-        # print(field_price_item.text)
         assert _price in field_price_item.text, "Wrong price basket"
 
 
