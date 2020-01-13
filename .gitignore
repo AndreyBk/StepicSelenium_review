@@ -1,0 +1,6 @@
+# Created by pytest automatically.
+#requirements.txt
+#.gitignore
+/selenium_env/*
+/__pycache__/*
+/pages/__pycache__/*
